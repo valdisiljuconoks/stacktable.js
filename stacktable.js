@@ -168,7 +168,9 @@
       
       $table.addClass('stacktable large-only');
       var tb = $('<tbody></tbody>');
-      var col_i = 1; //col index starts at 0 -> start copy at second column.
+      // if only one column, start from first column.
+      // else col index starts at 0 -> start copy at second column.
+      var col_i = settings.columns == 1 ? 0 : 1;
 
       while (col_i < num_cols) {
         $table.find('>thead>tr,>tbody>tr,>tfoot>tr').each(function(index) {
@@ -202,7 +204,7 @@
             tem.append(first, second);
           } else if(settings.columns === 1) {
             // collpase all columns into single column
-            var first = $(this).find('>td,>th').eq(col_i - 1).clone().addClass("st-key");
+            var first = $(this).find('>td,>th').eq(col_i).clone().addClass("st-key");
             tem.append(first);
           }
 
